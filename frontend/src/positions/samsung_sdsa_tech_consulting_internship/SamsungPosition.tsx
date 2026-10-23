@@ -27,9 +27,6 @@ const SamsungPosition: FC = () => {
         </span>
         <h2 className='flex items-center mb-1 text-lg font-semibold text-rfg'>
           IT Consultant - Internship
-          <span className='bg-rprimary text-rbg text-sm font-medium me-2 px-2.5 py-0.5 rounded-sm ms-3'>
-            Latest
-          </span>
         </h2>
         <h3 className='block mb-2 text-md font-normal leading-none text-rfg/80'>
           Samsung SDSA

@@ -10,15 +10,17 @@ import SamsungPosition from "../positions/samsung_sdsa_tech_consulting_internshi
 import ADMTronicsPosition from "../positions/adm_tronics_software_engineering/ADMTronicsPosition";
 import ABLPosition from "../positions/abl_LLC_operations_analyst_internship/ABLPosition";
 import InfiniTutorProject from "../projects/infinitutor/Infinitutor";
+import VerseSoftwareEngineerPosition from "../positions/verse_medical_software_engineer/VerseSoftwareEngineerPosition";
+import VerseOperationsAssociatePosition from "../positions/verse_medical_operations_associate/VerseOperationsAssociatePosition";
 
 const ProjectsPage: FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const rawSection = searchParams.get("section");
   const section =
-    rawSection === "past_roles" || rawSection === "notable_projects"
+    rawSection === "roles" || rawSection === "notable_projects"
       ? rawSection
-      : "past_roles";
+      : "roles";
 
   const rawProject = searchParams.get("project");
   const project =
@@ -69,10 +71,10 @@ const ProjectsPage: FC = () => {
              shadow-[0_2px_10px] shadow-rprimary/50'
         >
           <Tabs.Trigger
-            value='past_roles'
+            value='roles'
             className='portfolio-main-tabs'
           >
-            Past Roles
+            Roles
           </Tabs.Trigger>
 
           <Tabs.Trigger
@@ -83,7 +85,7 @@ const ProjectsPage: FC = () => {
           </Tabs.Trigger>
         </Tabs.List>
 
-        <Tabs.Content value='past_roles'>
+        <Tabs.Content value='roles'>
           <motion.section
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -95,6 +97,10 @@ const ProjectsPage: FC = () => {
           >
             {/* All Positional Information */}
             <ol className='relative border-s border-rfg/40'>
+              {/* Verse Medical Software Engineer Position Information */}
+              <VerseSoftwareEngineerPosition />
+              {/* Verse Medical Operations Associate Position Information */}
+              <VerseOperationsAssociatePosition />
               {/* Samsung Position Information */}
               <SamsungPosition />
               {/* Asset Based Lending LLC Position Information */}

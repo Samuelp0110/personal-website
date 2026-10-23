@@ -1,120 +1,12 @@
 import type { FC } from "react";
-import AboutMeGroupPhoto from "../assets/AboutMeGroupPhoto.jpg";
-import aboutSoccer from "../assets/aboutSoccer.webp";
-import aboutRocco from "../assets/aboutAward.jpeg";
-import aboutFleco from "../assets/aboutFleco.jpg";
-import aboutCooking from "../assets/aboutCooking.jpg";
 import HeroHeader from "../components/HeroHeader";
 import PhotoCard from "../components/PhotoCard";
-import {
-  MapPin,
-  GraduationCap,
-  BriefcaseBusiness,
-  MoveRight,
-  Sparkle,
-} from "lucide-react";
+import { MoveRight } from "lucide-react";
 import ConnectModal from "../components/Navigation/ConnectModal";
 import { Link } from "react-router";
 import { motion } from "framer-motion";
 import { Popover } from "radix-ui";
-
-const photos = [
-  {
-    title: "Master's Graduation",
-    imageSrc: AboutMeGroupPhoto,
-    imageAlt: "Graduation Group Photo",
-    description:
-      "Graduated with my Master's in Computer Science alongside my peers",
-  },
-  {
-    title: "Hive Soccer League",
-    imageSrc: aboutSoccer,
-    imageAlt: "Group Soccer Photo",
-    description:
-      "Having played soccer since I was 3, I try to stay active with local adult leagues like Hive in Hoboken, NJ",
-  },
-  {
-    title: "Ansary Competition",
-    imageSrc: aboutFleco,
-    imageAlt: "Fleco Photo",
-    description:
-      "I participated in the Ansary Competition presenting the app Fleco, where I and my teammates won 2nd place",
-  },
-  {
-    title: "Appreciation Award",
-    imageSrc: aboutRocco,
-    imageAlt: "Award Photo",
-    description:
-      "I am always keen to recognize those who have excelled in their area, which is why I was able to grant my friend a certificate of appreciation formally for his first year as a professor ",
-  },
-  {
-    title: "Cooking a Lot",
-    imageSrc: aboutCooking,
-    imageAlt: "Shakshuka Photo",
-    description:
-      "I love to cook all types of food. Shown here is my attempt at Shakshuka",
-  },
-];
-
-const skills = [
-  {
-    skill: "Data Analytics",
-    tools: ["Python", "Pandas", "Numpy", "Power BI", "SQL", "Excel"],
-  },
-  {
-    skill: "System Design",
-    tools: ["Lucidchart", "UML", "ER Diagrams", "AWS Architecture"],
-  },
-  {
-    skill: "Cloud Infrastructure",
-    tools: ["AWS", "Docker"],
-  },
-  {
-    skill: "Process Automation",
-    tools: ["n8n", "REST APIs"],
-  },
-  {
-    skill: "Web Development",
-    tools: ["React", "TypeScript", "TailwindCSS", "Express", "PostgreSQL"],
-  },
-  {
-    skill: "Technical & Business Communication",
-    tools: ["MS Office Suite"],
-  },
-];
-
-const services = [
-  { service: "Custom AI Agent Development" },
-  { service: "Generative AI Solutions & Prototyping" },
-  { service: "Data-Driven Business Analytics" },
-  { service: "Strategic Growth & Technology Advisory" },
-];
-
-const callOuts = [
-  { main: "4+", sub: "Years of Experience" },
-  { main: "10+", sub: "Projects Completed" },
-  { main: "3", sub: "Internships" },
-  { main: "2", sub: "Degrees Earned" },
-];
-
-const tags = [
-  {
-    icon: <Sparkle />,
-    text: "IT Consultant",
-  },
-  {
-    icon: <GraduationCap />,
-    text: "M.S. Computer Science - B.S. Business Science",
-  },
-  {
-    icon: <MapPin />,
-    text: "New York City Area",
-  },
-  {
-    icon: <BriefcaseBusiness />,
-    text: "1+ Years of Professional Experience",
-  },
-];
+import { photos, skills, services, callOuts, tags } from "../data/about";
 
 const About: FC = () => {
   return (
@@ -133,9 +25,11 @@ const About: FC = () => {
             </div>
             {/* Tags */}
             <div className='mb-4'>
-              {tags.map(({ icon, text }) => (
-                <a className='flex gap-2 py-0.5'>
-                  <span className='text-rprimary'>{icon}</span>
+              {tags.map(({ icon: Icon, text }) => (
+                <a key={text} className='flex gap-2 py-0.5'>
+                  <span className='text-rprimary'>
+                    <Icon />
+                  </span>
                   <span className='text-rtertiary'>{text}</span>
                 </a>
               ))}
@@ -173,7 +67,7 @@ const About: FC = () => {
               <div className='text-xl font-semibold'>Key Skills</div>
               <div className='flex flex-wrap '>
                 {skills.map(({ skill, tools }) => (
-                  <Popover.Root>
+                  <Popover.Root key={skill}>
                     <Popover.Trigger asChild>
                       <button className='flex px-3 py-0.5 bg-linear-to-br text-rfg from-rsecondary to-rneutral my-1 mx-2 rounded-full shadow-[0_1px_2px] shadow-rtertiary transition-transform duration-150 hover:scale-[1.08] cursor-pointer'>
                         {skill}
@@ -208,7 +102,7 @@ const About: FC = () => {
             <div className='my-2'>
               <div className='text-xl font-semibold mb-2'>Services</div>
               {services.map(({ service }) => (
-                <div className='flex items-center gap-1 pb-1'>
+                <div key={service} className='flex items-center gap-1 pb-1'>
                   <span className='text-rprimary'>
                     <MoveRight size={16} />
                   </span>
